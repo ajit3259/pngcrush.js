@@ -16,8 +16,20 @@
 // after the generated code, you will need to define   var Module = {};
 // before the code. Then that object will be used in the code, and you
 // can continue to use Module afterwards as well.
-var Module = typeof Module !== 'undefined' ? Module : {};
+//var Module = typeof Module !== 'undefined' ? Module : {};
+var Module = {
+  print: function(text){
+    text+="\n";
+    //console.log(text);
+    document.getElementById("text").textContent+=text;
 
+  },
+  printErr: function(text) {
+    text+="\n";
+    //console.log(text);
+    document.getElementById("text").textContent+=text;
+  }
+};
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
 // {{PRE_JSES}}

@@ -7895,65 +7895,14 @@ defined(PNG_READ_STRIP_16_TO_8_SUPPORTED)
                 else
                     fprintf(STDERR, "     (%4.2f%% critical chunk increase)\n",
                       -(100.0 - (100.0 * idat_length[best]) / idat_length[0]));
-                /*fprintf(stderr, "   %d   %d\n",input_length,output_length);*/
                 if (input_length == output_length)
                     fprintf(STDERR, "     (no filesize change)\n\n");
                 else if (input_length > output_length)
                     fprintf(STDERR, "     (%4.2f%% filesize reduction)\n\n",
                       (100.0 - (100.0 * output_length) / input_length));
                 else
-                   /* fprintf(STDERR, "     (%4.2f%% filesize increase)\n\n",
-                      -(100.0 - (100.0 * output_length) / input_length));*/
-                	{
-                		/*fprintf(stderr, "\n   %d   %d\n",input_length,output_length);*/
-                		fprintf(STDERR, "\n     (no filesize change) PNG file cannot be compressed , No best method find\n\n");
-                	P2("prepare to copy input to output\n");
-                    pngcrush_pause();
-
-                    if ((fpin = FOPEN(inname, "rb")) == NULL)
-                    {
-                        fprintf(STDERR, "Could not find input file %s\n",
-                                inname);
-                        continue;
-                    }
-
-                    number_of_open_files++;
-                    if ((fpout = FOPEN(outname, "wb")) == NULL)
-                    {
-                        fprintf(STDERR,
-                           "pngcrush: could not open output file %s\n",
-                           outname);
-                        FCLOSE(fpin);
-                        exit(1);
-                    }
-
-                    number_of_open_files++;
-                    P2("copying input to output...");
-
-                    for (;;)
-                    {
-                        png_size_t num_in, num_out;
-
-                        num_in = fread((void *)buffer, 1, 1, fpin);
-                        if (!num_in)
-                            break;
-                        num_out = fwrite(buffer, 1, 1, fpout);
-                        if (num_out != num_in)
-                            P2("copy error.\n");
-                    }
-                    P2("copy complete.\n");
-                    /*fseek(fpout, 0L, SEEK_END);
-                    output_length = ftell(fpout);
-                    fseek(fpout,0L,SEEK_SET);*/
-                    pngcrush_pause();
-                    FCLOSE(fpin);
-                    FCLOSE(fpout);
-                    setfiletype(outname);
-                    
-                    /*fprintf(stderr, "\n   %d   %d\n",input_length,output_length);*/
-                    break;
-
-                }
+                    fprintf(STDERR, "     (%4.2f%% filesize increase)\n\n",
+                      -(100.0 - (100.0 * output_length) / input_length));
 
                 if (verbose > 2)
                     fprintf(STDERR, "   Number of open files=%d\n",

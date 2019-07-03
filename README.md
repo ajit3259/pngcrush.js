@@ -47,8 +47,7 @@ emcc pngcrush.bc -o pngcrush.js
 
 ## Contributing
 
-<a href="https://github.com/ajit3259/"><b>Ajit Kumar</b></a><br>
-<a href="https://github.com/YasasviPeruvemba/"><b>Yasasvi Peruvemba</b></a>
+<a href="https://github.com/ajit3259/"><b>Ajit Kumar</b></a>
 
 ## pngcrush Authors
 

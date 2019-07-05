@@ -6,6 +6,9 @@ PNGCRUSH is a free and open-source command-line utility for optimizing PNG image
 
 More Info : https://pmt.sourceforge.io/pngcrush/
 
+# Demo
+https://ajit3259.github.io/pngcrush.js/
+
 ## Getting Started
 
 Emscripten is a toolchain for compiling to asm.js and WebAssembly, built using LLVM, that lets you run C and C++ on the web at near-native speed without plugins.

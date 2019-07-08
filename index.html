@@ -65,7 +65,7 @@
             img.style.display = "block";
 
             //let us create Emscripten files
-           var byteArray = b64ToByteArray(imageData.substring(22)); //explanation needed
+           var byteArray = b64ToByteArray(imageData.substring(22)); //to skip data img content
 
             var inputfile = FS.createDataFile("/", "input.png", byteArray, true, false);
             

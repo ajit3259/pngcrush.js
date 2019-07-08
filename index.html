@@ -79,7 +79,7 @@
             //allow user to download
 
            var typedArray = new Uint8Array(file.contents.slice(0,file.contents.length/2)); 
-           console.log(typedArray);
+           //console.log(typedArray);
 
 	       blob = new Blob([typedArray], {type: "application/octet-binary"});
            var download = document.getElementById("download");

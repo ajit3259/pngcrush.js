@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <title>PNG CRUSH</title>
     <script type="application/javascript" src="js/b64.js"></script>
+    
     <script type="application/javascript" src="js/filesaver.js"></script>
-    
-    
     <style type="text/css">
     #text {
      background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
@@ -45,6 +44,8 @@
     var blob;
     function handleFiles(files) {
         var file = files[0];
+        //console.log(file);
+
         var output = [];
             
         output.push('<li><strong>', escape(file.name), '</strong> (', file.type || 'n/a', ') - ',file.size, ' bytes, last modified: ',
@@ -64,24 +65,21 @@
             img.style.display = "block";
 
             //let us create Emscripten files
-            
-           var byteArray = b64ToByteArray(imageData.substring(22)); //skipping data:image/png;base64, in imageData
+           var byteArray = b64ToByteArray(imageData.substring(22)); //explanation needed
 
             var inputfile = FS.createDataFile("/", "input.png", byteArray, true, false);
+            
             var args = ['-reduce', '-rem', 'alla', '-rem', 'text', 'input.png', 'output.png'];
             document.getElementById("text").textContent = "";
 			Module.callMain(args);
 			
             var file = FS.findObject('output.png');
-            //console.log(file.contents);
-            //console.log(file.contents.length);
+            console.log(file.contents);
+            console.log(file.contents.length);
             //allow user to download
-            var typedArray;
-            if(file.contents.length/2 < files[0].size)
-            	typedArray = new Uint8Array(inputfile.contents);
-           else
-           		typedArray = new Uint8Array(file.contents.slice(0,file.contents.length/2)); 
-           //console.log(typedArray);
+
+           var typedArray = new Uint8Array(file.contents.slice(0,file.contents.length/2)); 
+           console.log(typedArray);
 
 	       blob = new Blob([typedArray], {type: "application/octet-binary"});
            var download = document.getElementById("download");
@@ -99,7 +97,7 @@
     download.addEventListener("click", function(){
 
         saveAs(blob, "compressed.png"); //allow user to download used from filesaver.js
-    });
+    })
     
 </script>
 

@@ -45,8 +45,10 @@ cd ..
 Generate pngcrush.js
 
 ```
-emcc pngcrush.bc -o pngcrush.js
+emcc pngcrush.bc -s WASM=0 -o pngcrush.js
 ```
+
+(Added -s WASM=0 as sometimes wasm streaming fails on other browsers except mozilla)
 
 ## Contributing
 

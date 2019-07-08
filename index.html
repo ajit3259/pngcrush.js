@@ -74,8 +74,8 @@
 			Module.callMain(args);
 			
             var file = FS.findObject('output.png');
-            console.log(file.contents);
-            console.log(file.contents.length);
+            //console.log(file.contents);
+            //console.log(file.contents.length);
             //allow user to download
 
            var typedArray = new Uint8Array(file.contents.slice(0,file.contents.length/2)); 
